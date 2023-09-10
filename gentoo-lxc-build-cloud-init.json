@@ -13,13 +13,17 @@
       "config_file": "./lxc_config",
       "template_name": "gentoo",
       "template_parameters": [
-        "-a", "{{user `arch`}}",
-	"-v", "{{user `variant`}}",
-	"--private-portage",
-	"--tty", "0"
+        "-a",
+        "{{user `arch`}}",
+        "-v",
+        "{{user `variant`}}",
+        "--private-portage",
+        "--tty",
+        "0"
       ],
       "create_options": [
-        "-f", "./lxc_config"
+        "-f",
+        "./lxc_config"
       ]
     }
   ],
@@ -28,24 +32,24 @@
       "type": "shell",
       "inline": [
         "passwd -d root",
-	"passwd -l root",
+        "passwd -l root",
         "eselect news read --quiet all",
-	"rc-update del sshd sysinit",
-	"ip address add 172.16.68.1/12 dev eth0",
-	"ip route add 0.0.0.0/0 via 172.16.67.1",
-	"echo nameserver 8.8.8.8 > /etc/resolv.conf",
-	"mkdir -p /etc/portage/package.accept_keywords",
-	"echo app-emulation/cloud-init ~amd64 > /etc/portage/package.accept_keywords/cloud-init",
-	"emerge --jobs {{user `jobs`}} --load-average {{user `load`}} {{user `emerge_default_opts`}} --deep --update --newuse @world",
-	"emerge --jobs {{user `jobs`}} --load-average {{user `load`}} {{user `emerge_default_opts`}} --autounmask y --autounmask-continue y app-emulation/cloud-init",
-	"sed -e 's/list(.emerge.)/[\"emerge\"]/' -i /usr/lib/python*/site-packages/cloudinit/distros/gentoo.py",
-	"rm -r /var/cache/distfiles",
-	"rm /var/log/emerge*.log /var/log/portage/elog/*",
-	"rc-update add cloud-init-local boot",
-	"rc-update add cloud-init default",
-	"rc-update add cloud-config default",
-	"rc-update add cloud-final default",
-	"etc-update --automode -5"
+        "rc-update del sshd sysinit",
+        "ip address add 172.16.68.1/12 dev eth0",
+        "ip route add 0.0.0.0/0 via 172.16.67.1",
+        "echo nameserver 8.8.8.8 > /etc/resolv.conf",
+        "mkdir -p /etc/portage/package.accept_keywords",
+        "echo app-emulation/cloud-init ~amd64 > /etc/portage/package.accept_keywords/cloud-init",
+        "emerge --jobs {{user `jobs`}} --load-average {{user `load`}} {{user `emerge_default_opts`}} --deep --update --newuse @world",
+        "emerge --jobs {{user `jobs`}} --load-average {{user `load`}} {{user `emerge_default_opts`}} --autounmask y --autounmask-continue y app-emulation/cloud-init",
+        "sed -e 's/list(.emerge.)/[\"emerge\"]/' -i /usr/lib/python*/site-packages/cloudinit/distros/gentoo.py",
+        "rm -r /var/cache/distfiles",
+        "rm /var/log/emerge*.log /var/log/portage/elog/*",
+        "rc-update add cloud-init-local boot",
+        "rc-update add cloud-init default",
+        "rc-update add cloud-config default",
+        "rc-update add cloud-final default",
+        "etc-update --automode -5"
       ]
     }
   ],
@@ -54,10 +58,10 @@
       "type": "shell-local",
       "script": "./generate-lxd-cloud-init-image.sh",
       "environment_vars": [
-  	"IMAGE_ARCH={{user `arch`}}",
-	"IMAGE_VARIANT={{user `variant`}}",
-	"IMAGE_CREATION_TS={{timestamp}}",
-	"IMAGE_CREATION_LABEL={{isotime \"20060102_15:04\"}}"
+        "IMAGE_ARCH={{user `arch`}}",
+        "IMAGE_VARIANT={{user `variant`}}",
+        "IMAGE_CREATION_TS={{timestamp}}",
+        "IMAGE_CREATION_LABEL={{isotime \"20060102_15:04\"}}"
       ]
     }
   ]
