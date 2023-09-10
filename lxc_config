@@ -1,0 +1,7 @@
+# Include common configuration
+lxc.include = /usr/share/lxc/config/gentoo.common.conf
+
+lxc.net.0.type = veth
+lxc.net.0.name = eth0
+lxc.net.0.link = lxdbr0
+lxc.net.0.flags = up

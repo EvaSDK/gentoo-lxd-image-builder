@@ -1,0 +1,23 @@
+[
+  {
+    "arch": "amd64",
+    "variant": "amd64-openrc",
+    "aliases": [
+      "gentoo/amd64-openrc"
+    ]
+  },
+  {
+    "arch": "amd64",
+    "variant": "amd64-nomultilib-openrc",
+    "aliases": [
+      "gentoo/amd64-nomultilib-openrc"
+    ]
+  },
+  {
+    "arch": "amd64",
+    "variant": "amd64-hardened-nomultilib-openrc",
+    "aliases": [
+      "gentoo/amd64-hardened-nomultilib-openrc"
+    ]
+  }
+]
