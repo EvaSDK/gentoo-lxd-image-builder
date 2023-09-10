@@ -39,7 +39,7 @@ build() {
 
 		echo "Building ${arch}/${variant}..."
 		LC_ALL=en_US.utf8 packer build -var arch=${arch} -var variant=${variant} gentoo-lxc-build-cloud-init.json
-		
+
 		aliases=$(jq -r '.['$idx'].aliases | map("--alias " + .) | join(" ")' < variants.json)
 		lxc image import ${aliases} ./output-gentoo/gentoo-${arch}-${variant}.tar.xz
 	done
@@ -58,4 +58,3 @@ case $1 in
 	build) shift; build $@ ;;
 	list) list;;
 esac
-
